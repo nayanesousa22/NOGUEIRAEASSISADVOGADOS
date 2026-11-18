@@ -1,0 +1,1031 @@
+@font-face {
+  font-family: "Baskerville Old Face";
+  src: local("Baskerville Old Face"), local("BaskOldFace"),
+       url("assets/BaskervilleOldFace.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --dark: #202020;
+  --offwhite: #F7F4EE;
+  --gold: #D4A72C;
+  --gold-dark: #A97C14;
+  --font-display: "Baskerville Old Face", Baskerville, "Libre Baskerville", Georgia, serif;
+  --font-text: "Poppins", Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.hide-m { display: inline; }
+.show-m { display: none; }
+.nowrap { white-space: nowrap; }
+
+body {
+  font-family: var(--font-text);
+  color: var(--dark);
+  background: var(--offwhite);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- DOBRA 1 (HERO) ---------- */
+.hero {
+  position: relative;
+  height: clamp(680px, 56.25vw, 920px);
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  background: #1A1A1A url("assets/hero-bg.jpg") no-repeat right center / cover;
+  padding: 80px 0 140px;
+}
+
+.hero__header {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 6vw;
+  box-sizing: border-box;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero__header .logo {
+  pointer-events: auto;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  letter-spacing: 0.12em;
+  color: var(--offwhite);
+  font-weight: 400;
+}
+
+.logo__tag {
+  font-family: var(--font-text);
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.hero__content {
+  width: 100%;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 40px 6vw 0;
+}
+
+.hero__title {
+  max-width: 820px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.3rem, 3.6vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--gold);
+  margin-bottom: 30px;
+  animation: heroFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+}
+
+.hero__title em {
+  display: inline;
+  font-style: italic;
+  color: var(--offwhite);
+}
+
+.hero__text {
+  max-width: 500px;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--offwhite);
+  margin-bottom: 36px;
+  animation: heroFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards;
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background: var(--gold);
+  color: var(--dark);
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 24px rgba(212, 167, 44, 0.4);
+}
+
+/* Flash de luz infinito da esquerda pra direita a cada 3 segundos */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -130%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  animation: btn-flash 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes btn-flash {
+  0% {
+    left: -130%;
+  }
+  28%, 100% {
+    left: 170%;
+  }
+}
+
+.hero .btn {
+  animation: heroFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s backwards;
+}
+
+.hero__note {
+  max-width: 470px;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(247, 244, 238, 0.75);
+  animation: heroFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.75s backwards;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__wave {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: clamp(70px, 9vw, 130px);
+  display: block;
+  pointer-events: none;
+}
+
+/* ---------- DOBRA 2 ---------- */
+.doubts {
+  background: var(--offwhite);
+  padding: 50px 0 130px;
+  overflow: hidden;
+}
+
+.doubts__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 6vw;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 110px;
+  align-items: center;
+}
+
+.doubts__title {
+  max-width: 580px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
+  line-height: 1.14;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.doubts__title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--gold);
+  margin-top: 24px;
+}
+
+.doubts__left p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+
+.doubts__left strong {
+  font-weight: 500;
+}
+
+.doubts__label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a7a1c;
+  margin-bottom: 20px;
+}
+
+.doubts__list {
+  list-style: none;
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 20px;
+}
+
+/* EFEITO DE SCROLL GERAL (APARECE AO DESCER E REAPARECE AO SUBIR) */
+html.js-enabled [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+html.js-enabled [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card {
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  padding: 0 36px;
+  background: var(--dark);
+  color: var(--offwhite);
+  border-left: 4px solid var(--gold);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1.3;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Gavetas sendo puxadas da direita pra esquerda um de cada vez */
+html.js-enabled .card {
+  opacity: 0.1;
+  transform: translateX(120%);
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease-out,
+              box-shadow 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+html.js-enabled .doubts__list.is-visible .card:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.1s;
+  box-shadow: -8px 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+html.js-enabled .doubts__list.is-visible .card:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.3s;
+  box-shadow: -8px 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+html.js-enabled .doubts__list.is-visible .card:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.5s;
+  box-shadow: -8px 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.card:hover {
+  transform: translateX(-8px) scale(1.02);
+  box-shadow: -14px 14px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- DOBRA 3 (CAMINHO CLARO) ---------- */
+.steps {
+  background: var(--dark);
+  padding: 110px 0 120px;
+}
+
+.steps__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.steps__container {
+  background: #FFFFFF;
+  border-radius: 28px;
+  padding: 64px 48px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+.steps__title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1.05;
+  color: var(--dark);
+  margin-bottom: 46px;
+}
+
+.steps__title em {
+  display: block;
+  margin-top: 2px;
+  line-height: 1.05;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.steps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  background: #FAF8F5;
+  border: 1px solid #EBE5DB;
+  border-radius: 18px;
+  padding: 18px 18px 26px;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease;
+}
+
+/* Fade in de cada quadrado um de cada vez em velocidade normal */
+html.js-enabled .step-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s ease;
+  will-change: opacity, transform;
+}
+
+html.js-enabled .steps__grid.is-visible .step-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+html.js-enabled .steps__grid.is-visible .step-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+html.js-enabled .steps__grid.is-visible .step-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.44s;
+}
+
+.step-card:hover {
+  transform: translateY(-5px) scale(1.025);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.step-card__media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.step-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.step-card__num {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--dark);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.step-card__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.step-card__desc {
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: #4A4A4A;
+}
+
+/* ---------- DOBRA 4 ---------- */
+.about {
+  background: var(--offwhite);
+  padding: 170px 0;
+}
+
+.about__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 6vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 110px;
+  align-items: center;
+}
+
+.about__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.about__title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--gold);
+  margin-top: 24px;
+}
+
+.about__text p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 22px;
+  max-width: 540px;
+}
+
+.about__image {
+  height: 580px;
+  overflow: hidden;
+  border-radius: 14px;
+  border-bottom: 6px solid var(--gold);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.about__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* ---------- DOBRA 5 (FAQ) ---------- */
+.faq {
+  position: relative;
+  background: linear-gradient(rgba(20, 20, 20, 0.72), rgba(20, 20, 20, 0.82)),
+              url("assets/faq-bg.jpg") no-repeat center center / cover;
+  padding: 120px 0 160px;
+}
+
+.faq__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.faq__title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
+  line-height: 1.15;
+  color: var(--gold);
+  margin-bottom: 56px;
+}
+
+.faq__title em {
+  font-style: italic;
+  color: var(--offwhite);
+}
+
+.faq__list {
+  display: grid;
+  gap: 26px;
+}
+
+.faq__item {
+  background: var(--gold-dark);
+  color: #FFFFFF;
+  box-shadow: 0 0 28px rgba(212, 167, 44, 0.35);
+}
+
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 36px;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-text);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.faq__item[open] summary::after { content: "\2212"; }
+
+.faq__item p {
+  padding: 0 36px 34px;
+  max-width: 660px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* ---------- FAIXAS (DUPLO LOOP INFINITO) ---------- */
+.ribbon-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #181818 50%, var(--offwhite) 50%);
+}
+
+.ribbon {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  top: 50%;
+  height: 74px;
+  margin-top: -37px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.ribbon--back {
+  background: rgba(26, 26, 26, 0.95);
+  border: 1.5px solid var(--gold);
+  transform: rotate(2.4deg);
+  z-index: 1;
+}
+
+.ribbon--front {
+  background: var(--gold);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transform: rotate(-2.4deg);
+  z-index: 2;
+}
+
+.ribbon__track {
+  display: flex;
+  width: max-content;
+  animation: ribbon-scroll 38s linear infinite;
+}
+
+.ribbon__track--reverse {
+  animation: ribbon-scroll-reverse 42s linear infinite;
+}
+
+.ribbon__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ribbon--front .ribbon__group span {
+  white-space: nowrap;
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+
+.ribbon--front .ribbon__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 44px;
+  flex-shrink: 0;
+  color: var(--dark);
+}
+
+.ribbon--back .ribbon__group span {
+  white-space: nowrap;
+  font-family: var(--font-text);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ribbon--back .ribbon__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 44px;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+
+@keyframes ribbon-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes ribbon-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon__track,
+  .ribbon__track--reverse,
+  .btn::after {
+    animation: none;
+  }
+  [data-reveal],
+  .card,
+  .step-card,
+  .hero__title,
+  .hero__text,
+  .hero .btn,
+  .hero__note {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- DOBRA 6 (CTA) ---------- */
+.cta {
+  background: var(--offwhite);
+  padding: 90px 0 140px;
+  text-align: center;
+}
+
+.cta__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.cta__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 2.7vw, 2.9rem);
+  line-height: 1.25;
+  color: var(--dark);
+  margin-bottom: 26px;
+}
+
+.cta__sub {
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 42px;
+}
+
+.cta__sub-m { display: none; }
+.cta__sub-d { display: inline; }
+
+/* ---------- RODAPÉ ---------- */
+.footer {
+  background: #141414;
+  border-top: 1px solid rgba(212, 167, 44, 0.25);
+  padding: 34px 0;
+  text-align: center;
+}
+
+.footer__inner {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 6vw;
+}
+
+.footer p {
+  font-family: var(--font-text);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  color: rgba(247, 244, 238, 0.7);
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 960px) {
+  .hero {
+    background-position: 70% center;
+    padding-bottom: 120px;
+  }
+
+  .doubts__inner,
+  .about__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .steps__container {
+    padding: 44px 24px;
+  }
+
+  .steps__grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .about__image {
+    height: 420px;
+  }
+}
+
+/* AJUSTES EXCLUSIVOS DA VERSÃO MOBILE */
+@media (max-width: 768px) {
+  .hide-m { display: none; }
+  .show-m { display: inline; }
+
+  /* DOBRA 1 */
+  .hero {
+    height: auto;
+    min-height: 720px;
+    background: #1A1A1A url("assets/hero-bg-mobile.jpg") no-repeat center top / cover;
+    padding: 260px 0 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero__header {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero__header .logo {
+    display: inline-flex;
+    margin: 0 auto;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__content {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 16px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .hero__title {
+    max-width: 100%;
+    text-align: center;
+    font-size: clamp(1.24rem, 5.15vw, 1.62rem);
+    line-height: 1.25;
+    margin: 0 auto 18px;
+    letter-spacing: -0.015em;
+  }
+
+  .hero__text {
+    max-width: 320px;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin: 0 auto 24px;
+    padding: 0;
+  }
+
+  .hero .btn {
+    display: inline-block;
+    width: auto;
+    max-width: 270px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 13px 26px;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    box-sizing: border-box;
+  }
+
+  .hero__note {
+    max-width: 320px;
+    text-align: center;
+    margin: 16px auto 0;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    padding: 0;
+  }
+
+  /* DOBRA 2 */
+  .doubts {
+    padding: 50px 0 80px;
+  }
+
+  .doubts__inner {
+    gap: 40px;
+    padding: 0 22px;
+  }
+
+  .card {
+    min-height: 90px;
+    padding: 0 22px;
+    font-size: 1.15rem;
+  }
+
+  /* DOBRA 3 */
+  .steps {
+    padding: 70px 0 80px;
+  }
+
+  .steps__inner {
+    padding: 0 18px;
+  }
+
+  .steps__container {
+    padding: 38px 20px;
+    border-radius: 20px;
+  }
+
+  .steps__title {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+    margin-bottom: 34px;
+  }
+
+  /* DOBRA 4 */
+  .about {
+    padding: 80px 0 90px;
+  }
+
+  .about__inner {
+    gap: 40px;
+    padding: 0 22px;
+  }
+
+  .about__title {
+    font-size: clamp(1.75rem, 6.5vw, 2.2rem);
+  }
+
+  .about__text p {
+    font-size: 1.05rem;
+  }
+
+  .about__image {
+    height: 380px;
+  }
+
+  /* DOBRA 5 (FAQ) - IMAGEM DE FUNDO VERTICAL */
+  .faq {
+    background: linear-gradient(rgba(20, 20, 20, 0.70), rgba(20, 20, 20, 0.82)),
+                url("assets/faq-bg-mobile.jpg") no-repeat center center / cover;
+    padding: 80px 0 100px;
+  }
+
+  .faq__inner {
+    padding: 0 20px;
+  }
+
+  .faq__title {
+    font-size: clamp(1.75rem, 6.5vw, 2.2rem);
+    margin-bottom: 36px;
+  }
+
+  .faq__item summary {
+    min-height: 80px;
+    padding: 0 22px;
+    font-size: 1.1rem;
+    gap: 16px;
+  }
+
+  .faq__item p {
+    padding: 0 22px 24px;
+    font-size: 0.92rem;
+  }
+
+  /* FAIXAS REDUZIDAS NO MOBILE */
+  .ribbon-wrapper {
+    height: 124px;
+  }
+
+  .ribbon {
+    height: 46px;
+    margin-top: -23px;
+  }
+
+  .ribbon--front .ribbon__group span,
+  .ribbon--back .ribbon__group span {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ribbon--front .ribbon__icon,
+  .ribbon--back .ribbon__icon {
+    width: 18px;
+    height: 18px;
+    margin: 0 20px;
+  }
+
+  /* DOBRA 6 (CTA) */
+  .cta {
+    padding: 70px 0 100px;
+  }
+
+  .cta__inner {
+    padding: 0 20px;
+  }
+
+  .cta__title {
+    font-size: clamp(1.35rem, 5.2vw, 1.7rem);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .cta__sub {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
+  .cta__sub-d { display: none; }
+  .cta__sub-m { display: inline; }
+
+  .cta .btn {
+    display: inline-block;
+    width: auto;
+    max-width: 270px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 13px 26px;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    box-sizing: border-box;
+  }
+}
